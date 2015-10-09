@@ -1,0 +1,32 @@
+<div class="">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input id="inputEmail" class="form-control" placeholder="Login" ng-model="signInData.params.username">
+        <input type="password"
+               id="inputPassword"
+               class="form-control"
+               placeholder="Password"
+               ng-model="signInData.params.password">
+
+        <span class="top20 btn btn-lg btn-primary btn-block" ng-click="signIn()">
+            Sign in
+        </span>
+    <span class="top20 btn btn-lg btn-primary btn-default" ng-click="getSignUpForm()" ng-if="!visibility">
+        sign up form
+    </span>
+    </form>
+
+    <form class="form-signin" ng-if="visibility">
+        <h2 class="form-signin-heading">Sign up</h2>
+        <input class="form-control" placeholder="Login" ng-model="signUpData.params.username">
+        <input type="password"
+               class="form-control"
+               placeholder="Password"
+               ng-model="signUpData.params.password">
+
+        <span class="top20 btn btn-lg btn-primary btn-block" ng-click="signUp()">
+            Sign up
+        </span>
+    </form>
+
+</div>
