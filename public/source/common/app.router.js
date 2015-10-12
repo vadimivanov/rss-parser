@@ -10,7 +10,7 @@ function config($stateProvider, $urlRouterProvider) {
         .otherwise('/main/home');
     $stateProvider
         .state('auth',{
-            templateUrl: 'views/auth.tpl.html'
+            templateUrl: 'source/views/auth.tpl.html'
         })
         .state('auth.login',{
             url: '/login',
@@ -18,7 +18,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
         .state('main',{
             url: '/main',
-            templateUrl: 'views/main.tpl.html',
+            templateUrl: 'source/views/main.tpl.html',
             ncyBreadcrumb: {
                 label: ''
             }

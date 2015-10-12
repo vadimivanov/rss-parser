@@ -14,7 +14,7 @@ angular
                     service: "/logout"
                 }
             };
-            $scope.feedSrc = 'http://k.img.com.ua/rss/ua/news.xml';
+            $scope.feedSrc = 'http://k.img.com.ua/rss/ru/news.xml';
             $scope.loadButonText = "Load";
             PubSub.subscribe('news', function(channel, data) {
                 if (data) {
@@ -23,10 +23,11 @@ angular
                     $scope.loadFeed();
                 }
             });
-            $scope.tagParser = function (data) {
+            $scope.tagParser = function (text, title) {
                 var parser = new DOMParser();
-                var doc = parser.parseFromString(data, 'text/html');
-                messages.setData(doc.querySelectorAll('body')[0].innerText);
+                var doc = parser.parseFromString(text, 'text/html');
+//                console.log('msg data',doc.querySelectorAll('p'));
+                messages.setData({text: doc.querySelectorAll('body')[0].innerText, title: title});
                 $state.go('main.details');
             };
             $scope.loadFeed = function(e){
@@ -41,7 +42,7 @@ angular
             $scope.loadFeed();
         }
         return {
-            templateUrl: 'views/home/home.tpl.html',
+            templateUrl: 'source/views/home/home.tpl.html',
             restrict: 'E',
             replace: true,
             scope: {},

@@ -15,7 +15,7 @@ function header(network, $state) {
     }
 
     return {
-        templateUrl: 'views/header/header.tpl.html',
+        templateUrl: 'source/views/header/header.tpl.html',
         restrict: 'E',
         scope: {},
         link: linker

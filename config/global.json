@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "latest"
+  },
+  "applications": {
+    "Knockout-demo": {
+      "applicationId": "JGndivFG1jnujNgfOuQ9l9z9jGzvIGzwf7CCWXfH",
+      "masterKey": "qze9PZPvlCax64A5gpnG6JHFdTENVGOvIuuRNJb9"
+    },
+    "_default": {
+      "link": "Knockout-demo"
+    }
+  }
+}

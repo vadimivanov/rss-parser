@@ -20,7 +20,7 @@ function images_list($state, network, $breadcrumb) {
         $scope.getImages();
     }
     return {
-        templateUrl: 'views/images_list/images_list.tpl.html',
+        templateUrl: 'source/views/images_list/images_list.tpl.html',
 //        restrict: 'E',
         scope: {},
 //        replace: true,

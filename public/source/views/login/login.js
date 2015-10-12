@@ -62,7 +62,7 @@ angular
         }
 
         return {
-            templateUrl: 'views/login/login.tpl.html',
+            templateUrl: 'source/views/login/login.tpl.html',
             restrict: 'E',
             scope: {},
             replace: true,
