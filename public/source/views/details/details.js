@@ -2,16 +2,18 @@ angular
     .module('app')
     .directive('details', details);
 
-details.$inject = ['$state', 'network', '$breadcrumb', 'messages'];
+details.$inject = ['$state', '$sce', '$breadcrumb', 'messages'];
 
-function details($state, network, $breadcrumb, messages) {
+function details($state, $sce, $breadcrumb, messages) {
     function linker($scope) {
         $scope.details = messages.getData();
-        $scope.data = {
-            text: $scope.details.text,
-            title: $scope.details.title
+        $scope.getHtml = function(html){
+            return $sce.trustAsHtml(html);
         };
-        console.log($scope.details);
+        $scope.text = $scope.details.fulltext.__cdata;
+        $scope.links = $breadcrumb.getStatesChain();
+        console.log($scope.links);
+        PubSub.publish('button-back', $scope.links[$scope.links.length-2]);
     }
     return {
         templateUrl: 'source/views/details/details.tpl.html',

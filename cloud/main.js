@@ -1,6 +1,12 @@
 
-// Use Parse.Cloud.define to define as many cloud functions as you want.
-// For example:
-Parse.Cloud.define("hello", function(request, response) {
-  response.success("Hello world!!!!");
+Parse.Cloud.define("xmlparser", function (request, response) {
+    sendRequest(request.params.url).then(function (res) {
+        response.success(res);
+    })
 });
+function sendRequest(url) {
+    return Parse.Cloud.httpRequest({
+        method: 'GET',
+        url: url
+    });
+}

@@ -1,7 +1,17 @@
 <div class="col-xs-12 col-sm-9">
     <div class="row">
-        <h2 ng-bind="data.title"></h2>
-        <div class="" ng-bind="data.text">
-        </div>
+        <h2 ng-bind="details.title.__cdata"></h2>
+        <img src="{{details.enclosure._url}}"/><br>
+        <p ng-bind-html="getHtml(text)">
+        </p>
+        <a href="http://vkontakte.ru/share.php?url={{details.link.__cdata}}" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/vk.png" alt="VK" />
+        </a>
+        <a href="https://plus.google.com/share?url={{details.link.__cdata}}" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+        </a>
+        <a href="http://www.facebook.com/sharer.php?u={{details.link.__cdata}}" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+        </a>
     </div>
 </div>

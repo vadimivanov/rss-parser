@@ -24,6 +24,7 @@ console.log('ooOOo');
             console.log('parseRSS',data, encodeURIComponent(data));
             var options = {
                 method: 'GET',
+                crossDomain: true,
                 url: data
 //                dataType: 'JSONP'
             };
