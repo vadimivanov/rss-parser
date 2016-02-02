@@ -13,7 +13,9 @@ function header(network, $state) {
         };
         $scope.getLink = function (url) {
             console.log(url);
+            network.FEED_SRC = url;
             PubSub.publish('news', url);
+            $state.go('main.home');
         };
         PubSub.subscribe('button-back', function(channel, data) {
             if (data) {

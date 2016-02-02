@@ -10,25 +10,27 @@ angular
 network.$inject = ['$http', 'CONFIG'];
 
 function network($http, CONFIG) {
-console.log('ooOOo');
-        this.getImages = function (data) {
-            var options = {
-                method: data.type,
-                url: 'https://'+CONFIG.API_KEY+':'+CONFIG.API_SECRET+'@api.cloudinary.com/v1_1/'+CONFIG.CLOUD_NAME+'/resources/image',
-                dataType: 'json'
-            };
-            console.log(data);
-            return $http(options);
-        };
-        this.parseRSS = function (data) {
-            console.log('parseRSS',data, encodeURIComponent(data));
-            var options = {
-                method: 'GET',
-                crossDomain: true,
-                url: data
-//                dataType: 'JSONP'
-            };
-            return $http(options);
-        };
 
-    }
+    this.FEED_SRC = 'http://k.img.com.ua/rss/ru/news.xml';
+
+    this.getImages = function (data) {
+        var options = {
+            method: data.type,
+            url: 'https://'+CONFIG.API_KEY+':'+CONFIG.API_SECRET+'@api.cloudinary.com/v1_1/'+CONFIG.CLOUD_NAME+'/resources/image',
+            dataType: 'json'
+        };
+        console.log(data);
+        return $http(options);
+    };
+
+    this.parseRSS = function (data) {
+        console.log('parseRSS',data, encodeURIComponent(data));
+        var options = {
+            method: 'GET',
+            crossDomain: true,
+            url: data
+        };
+        return $http(options);
+    };
+
+}

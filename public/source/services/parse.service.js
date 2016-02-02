@@ -15,17 +15,18 @@ function ParseService($http, CONFIG) {
     this.parseRequest = function (data, cb) {
         var responseData = [];
         console.log('parseRSS',data, encodeURIComponent(data));
-        Parse.Cloud.run('xmlparser',{url: data}, {
-            success: function (output) {
-                console.log('output', output);
-                var x2js = new X2JS();
-                var json = x2js.xml_str2json( output.text );
-                console.log('---$scope.feeds',json.rss.channel);
-                return json.rss.channel;
-            },
-            error: function (error) {console.log('error', error);}
-        });
-//        return responseData;
-    };
 
+        return new Promise(function (resolve, reject) {
+            Parse.Cloud.run('xmlparser',{url: data}, {
+                success: function (output) {
+                    console.log('output', output);
+                    var x2js = new X2JS();
+                    var json = x2js.xml_str2json( output.text );
+                    resolve(json.rss.channel);
+                    reject(json.rss.channel);
+                },
+                error: function (error) {console.log('error', error);}
+            });
+        });
+    };
 }
