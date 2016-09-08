@@ -12,11 +12,11 @@ function details($state, $sce, $breadcrumb, messages) {
         };
         $scope.text = $scope.details.fulltext.__cdata;
         $scope.links = $breadcrumb.getStatesChain();
-        console.log($scope.links);
+        console.log('links ', $scope.links);
         PubSub.publish('button-back', $scope.links[$scope.links.length-2]);
     }
     return {
-        templateUrl: 'source/views/details/details.tpl.html',
+        templateUrl: 'details/details.tpl.html',
         restrict: 'E',
         replace: true,
         scope: {},

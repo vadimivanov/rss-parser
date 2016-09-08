@@ -2,9 +2,9 @@ angular
     .module('app')
     .directive('home', home);
 
-    home.$inject = ['$state', '$sce', 'ParseService', '$breadcrumb', 'messages', 'network'];
+    home.$inject = ['$state', '$sce', 'ParseService', 'messages', 'network'];
 
-    function home($state, $sce, ParseService, $breadcrumb, messages, network) {
+    function home($state, $sce, ParseService, messages, network) {
         function linker($scope) {
             $scope.feeds = [];
             $scope.spinner = false;
@@ -21,14 +21,14 @@ angular
             });
             $scope.tagParser = function (index) {
                 messages.setData($scope.feeds[index]);
-                $state.go('main.details');
+                PubSub.publish('button-back', {link: 'home', title: 'Home'});
+                $state.go('details');
             };
             $scope.loadFeed = function(e){
                 $scope.spinner = true;
                 ParseService.parseRequest(network.FEED_SRC)
                    .then(function (res){
                        $scope.feeds = res.item;
-                       console.log('result ', res, $scope.feeds);
                        $scope.spinner = false;
                        $scope.$digest();
                 });
@@ -44,12 +44,10 @@ angular
             //     });
             // };
             $scope.loadFeed();
-            $scope.links = $breadcrumb.getStatesChain();
-
-            PubSub.publish('button-back', $scope.links[$scope.links.length-2]);
+            
         }
         return {
-            templateUrl: 'source/views/home/home.tpl.html',
+            templateUrl: 'home/home.tpl.html',
             restrict: 'E',
             replace: true,
             scope: {},

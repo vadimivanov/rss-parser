@@ -7,27 +7,30 @@ header.$inject = ['network', '$state'];
 function header(network, $state) {
     'use strict';
     function linker($scope) {
-        $scope.data = {
-            goBackTitle: '',
-            goBackLink: ''
-        };
+        $scope.data = {};
+        console.log('$scope.data --> ', $scope.data);
         $scope.getLink = function (url) {
             console.log(url);
             network.FEED_SRC = url;
             PubSub.publish('news', url);
-            $state.go('main.home');
+            $state.go('home');
+        };
+        $scope.goBack = function () {
+            $state.go($scope.data.goBackLink);
+            $scope.data = {};
         };
         PubSub.subscribe('button-back', function(channel, data) {
             if (data) {
-                $scope.data.goBackTitle = data.ncyBreadcrumb.label;
-                $scope.data.goBackLink = data.ncyBreadcrumbLink;
+                $scope.data.goBackTitle = data.title;
+                $scope.data.goBackLink = data.link;
             }
         });
     }
 
     return {
-        templateUrl: 'source/views/header/header.tpl.html',
+        templateUrl: 'header/header.tpl.html',
         restrict: 'E',
+        replace: true,
         scope: {},
         link: linker
     };

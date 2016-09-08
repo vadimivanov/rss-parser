@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^2.0.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
