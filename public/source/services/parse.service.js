@@ -1,8 +1,8 @@
 angular
     .module('app')
     .constant('CONFIG', {
-        APP_ID: 'JGndivFG1jnujNgfOuQ9l9z9jGzvIGzwf7CCWXfH',
-        JS_KEY: '2UQNUjDp44Ukr2ho4rk5Baw36T2vJ9aMRZrhWdlM'
+        APP_ID: 'a9jRLIufzpYFGbn44ZzF8Wl2gL3PbUAQIVz8vAx2',
+        JS_KEY: 'TT02USepmVKAtU3johi4sRUHDsnDT5GMJJyhXeNi'
     })
     .service('ParseService', ParseService);
 
@@ -11,7 +11,8 @@ ParseService.$inject = ['$http', 'CONFIG'];
 function ParseService($http, CONFIG) {
 
     Parse.initialize(CONFIG.APP_ID, CONFIG.JS_KEY);
-
+    Parse.serverURL = 'https://parseapi.back4app.com';
+    
     this.parseRequest = function (data, cb) {
         var responseData = [];
         console.log('parseRSS',data, encodeURIComponent(data));

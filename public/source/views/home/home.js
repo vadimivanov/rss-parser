@@ -6,6 +6,7 @@ angular
 
     function home($state, $sce, ParseService, $breadcrumb, messages, network) {
         function linker($scope) {
+            $scope.feeds = [];
             $scope.spinner = false;
             $scope.getHtml = function(html){
                 return $sce.trustAsHtml(html);
@@ -22,21 +23,26 @@ angular
                 messages.setData($scope.feeds[index]);
                 $state.go('main.details');
             };
-            //$scope.loadFeed = function(e){
-                //$scope.spinner = true;
-                // ParseService.parseRequest($scope.feedSrc)
-                //    .then(function (res){
-                //    $scope.feeds = res.item;
-                //    $scope.spinner = false;
-                //});
-            //};
             $scope.loadFeed = function(e){
-                network.parseRSS(network.FEED_SRC).then(function (res){
-                    var x2js = new X2JS();
-                    var json = x2js.xml_str2json( res.data );
-                    $scope.feeds = json.rss.channel.item;
+                $scope.spinner = true;
+                ParseService.parseRequest(network.FEED_SRC)
+                   .then(function (res){
+                       $scope.feeds = res.item;
+                       console.log('result ', res, $scope.feeds);
+                       $scope.spinner = false;
+                       $scope.$digest();
                 });
             };
+            $scope.render = function (data) {
+                $scope.feeds = data;
+            };
+            // $scope.loadFeed = function(e){
+            //     network.parseRSS(network.FEED_SRC).then(function (res){
+            //         var x2js = new X2JS();
+            //         var json = x2js.xml_str2json( res.data );
+            //         $scope.feeds = json.rss.channel.item;
+            //     });
+            // };
             $scope.loadFeed();
             $scope.links = $breadcrumb.getStatesChain();
 

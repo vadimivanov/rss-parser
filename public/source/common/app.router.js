@@ -9,13 +9,6 @@ function config($stateProvider, $urlRouterProvider) {
     $urlRouterProvider
         .otherwise('/main/home');
     $stateProvider
-        .state('auth',{
-            templateUrl: 'source/views/auth.tpl.html'
-        })
-        .state('auth.login',{
-            url: '/login',
-            template: '<login></login>'
-        })
         .state('main',{
             url: '/main',
             templateUrl: 'source/views/main.tpl.html',
