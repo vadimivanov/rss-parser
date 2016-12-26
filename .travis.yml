@@ -9,12 +9,14 @@ node_js:
   - "0.6"
   - "iojs"
 
-before_script:
-  - npm install -g gulp
-script: gulp default
 
 install:
   - npm install
+
+before_script:
+  - npm install -g gulp
+
+script: gulp default
 
 notifications:
   email:
@@ -25,9 +27,9 @@ branches:
   only:
     - demo-version
 
-deploy:
-  provider: s3
-  access_key_id: "AKIAJZ7MRNYC3A6BMA3A"
-  secret_access_key: "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"
-  bucket: "S3 Bucket"
-  skip_cleanup: true
+#deploy:
+#  provider: s3
+#  access_key_id: "AKIAJZ7MRNYC3A6BMA3A"
+#  secret_access_key: "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"
+#  bucket: "S3 Bucket"
+#  skip_cleanup: true
